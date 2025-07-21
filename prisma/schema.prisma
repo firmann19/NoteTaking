@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  notes     Note[]   @relation("UserNotes")
+  comments  Comment[]
+  shared    SharedNote[] @relation("SharedTo")
+}
+
+model Note {
+  id        String      @id @default(cuid())
+  title     String
+  content   String
+  isPublic  Boolean     @default(false)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  authorId  String
+  author    User        @relation("UserNotes", fields: [authorId], references: [id])
+  sharedTo  SharedNote[]
+  comments  Comment[]
+}
+
+model SharedNote {
+  id      String  @id @default(cuid())
+  note    Note    @relation(fields: [noteId], references: [id])
+  noteId  String
+  user    User    @relation("SharedTo", fields: [userId], references: [id])
+  userId  String
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  note      Note     @relation(fields: [noteId], references: [id])
+  noteId    String
+}

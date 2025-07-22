@@ -39,7 +39,6 @@ export default async function NoteDetailPage({ params }: Props) {
 
   return (
     <div className="p-6 max-w-2xl mx-auto">
-      {/* Back Button */}
       <div className="mb-4">
         <Link
           href="/notes"
@@ -50,10 +49,8 @@ export default async function NoteDetailPage({ params }: Props) {
         </Link>
       </div>
 
-      {/* Note Title */}
       <h1 className="text-3xl font-bold text-gray-800 mb-2">{note.title}</h1>
 
-      {/* Author Info */}
       <p className="text-gray-500 text-sm mb-4">
         Oleh{" "}
         <span className="font-medium">
@@ -61,12 +58,10 @@ export default async function NoteDetailPage({ params }: Props) {
         </span>
       </p>
 
-      {/* Note Content */}
       <div className="prose prose-sm mb-6 whitespace-pre-line text-gray-800">
         {note.content}
       </div>
 
-      {/* Owner Actions */}
       {isOwner && (
         <div className="flex items-center gap-2 mb-6">
           <Link
@@ -79,7 +74,6 @@ export default async function NoteDetailPage({ params }: Props) {
         </div>
       )}
 
-      {/* Comments */}
       <div className="mb-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-3">Komentar</h2>
         {note.comments.length === 0 ? (
@@ -98,7 +92,6 @@ export default async function NoteDetailPage({ params }: Props) {
         )}
       </div>
 
-      {/* Add Comment */}
       <CommentForm noteId={note.id} />
     </div>
   );

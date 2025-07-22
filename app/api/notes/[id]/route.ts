@@ -3,7 +3,6 @@ import { prisma } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../../auth/[...nextauth]/route";
 
-// GET /api/notes/[id]
 export async function GET(
   req: NextRequest,
   context: { params: { id: string } }
@@ -38,7 +37,6 @@ export async function GET(
   return NextResponse.json(note);
 }
 
-// PUT /api/notes/[id]
 export async function PUT(
   req: NextRequest,
   context: { params: { id: string } }
@@ -69,7 +67,6 @@ export async function PUT(
   return NextResponse.json(updated);
 }
 
-// DELETE /api/notes/[id]
 export async function DELETE(
   req: NextRequest,
   context: { params: { id: string } }

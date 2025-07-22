@@ -1,5 +1,4 @@
-// app/providers.tsx
-"use client"; // WAJIB: supaya jadi Client Component
+"use client";
 
 import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
